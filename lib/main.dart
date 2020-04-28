@@ -5,4 +5,3 @@ void main() => runApp(MaterialApp(
   home: Game(),
   debugShowCheckedModeBanner: false,
 ));
-
