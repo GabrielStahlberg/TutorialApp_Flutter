@@ -13,7 +13,7 @@ class _RadioButtonImplState extends State<RadioButtonImpl> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Entrada de dados"),
+        title: Text("RadioButton example"),
       ),
       body: Container(
         child: Column(

@@ -13,7 +13,7 @@ class _TextFieldImplState extends State<TextFieldImpl> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Entrada de dados"),
+        title: Text("TextField example"),
       ),
       body: Column(
         children: <Widget>[
@@ -22,7 +22,7 @@ class _TextFieldImplState extends State<TextFieldImpl> {
             child: TextField(
               keyboardType: TextInputType.text,
               decoration: InputDecoration(
-                labelText: "Digite um valor"
+                labelText: "Enter something"
               ),
               enabled: true, // or false
               maxLength: 5,

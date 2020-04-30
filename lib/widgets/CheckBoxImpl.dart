@@ -14,7 +14,7 @@ class _CheckBoxImplState extends State<CheckBoxImpl> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Entrada de dados"),
+        title: Text("CheckBox example"),
       ),
       body: Container(
         child: Column(
