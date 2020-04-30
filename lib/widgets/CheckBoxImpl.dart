@@ -7,7 +7,8 @@ class CheckBoxImpl extends StatefulWidget {
 
 class _CheckBoxImplState extends State<CheckBoxImpl> {
 
-  bool _isSelected = false;
+  bool _isJaponeseSelected = false;
+  bool _isBrazilianSelected = false;
 
   @override
   Widget build(BuildContext context) {
@@ -26,29 +27,50 @@ class _CheckBoxImplState extends State<CheckBoxImpl> {
                 activeColor: Colors.red,
                 selected: true, // The text also become colored
                 secondary: Icon(Icons.add_box),
-                value: _isSelected,
+                value: _isBrazilianSelected,
                 onChanged: (bool val) {
                   setState(() {
-                    _isSelected = val;
+                    _isBrazilianSelected = val;
+                  });
+                }
+            ),
+            CheckboxListTile(
+                title: Text("Japonese food"),
+                subtitle: Text("Exotic!"),
+                activeColor: Colors.red,
+                selected: true, // The text also become colored
+                secondary: Icon(Icons.add_box),
+                value: _isJaponeseSelected,
+                onChanged: (bool val) {
+                  setState(() {
+                    _isJaponeseSelected = val;
                   });
                 }
             ),
 
-
             /*   YOU HAVE TO CLICK INSIDE OF THE CHECKBOX  */
-            Text("Brazilian food"),
-            Checkbox(
-              value: _isSelected, //Initial state (true == selected)
-              onChanged: (bool val) {
-                setState(() {
-                  _isSelected = val;
-                });
-                print("Checkbox " + val.toString());
+//            Text("Brazilian food"),
+//            Checkbox(
+//              value: _isSelected, //Initial state (true == selected)
+//              onChanged: (bool val) {
+//                setState(() {
+//                  _isSelected = val;
+//                });
+//                print("Checkbox " + val.toString());
+//              },
+//            )
+            RaisedButton(
+              child: Text(
+                "Save",
+                style: TextStyle(
+                    fontSize: 20
+                ),
+              ),
+              onPressed: (){
+                print("Brazilian selected ? -> " + _isBrazilianSelected.toString());
+                print("Japonese selected ? -> " + _isJaponeseSelected.toString());
               },
             )
-
-
-
           ],
         ),
       ),

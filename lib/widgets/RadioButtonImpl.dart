@@ -37,6 +37,17 @@ class _RadioButtonImplState extends State<RadioButtonImpl> {
                     _radioSelected = radio;
                   });
                 }
+            ),
+            RaisedButton(
+              child: Text(
+                "Save",
+                style: TextStyle(
+                  fontSize: 20
+                ),
+              ),
+              onPressed: (){
+                print("Result: " + _radioSelected);
+              },
             )
           ],
         ),
