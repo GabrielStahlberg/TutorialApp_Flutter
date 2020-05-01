@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 
 class SecondScreen extends StatefulWidget {
+
+  String valueFromFirstScreen;
+
+  SecondScreen({this.valueFromFirstScreen});
+
   @override
   _SecondScreenState createState() => _SecondScreenState();
 }
@@ -17,7 +22,7 @@ class _SecondScreenState extends State<SecondScreen> {
         padding: EdgeInsets.all(32),
         child: Column(
           children: <Widget>[
-            Text("Second screen"),
+            Text("Second screen! value: ${widget.valueFromFirstScreen}"),
           ],
         ),
       ),

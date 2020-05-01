@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'SecondScreen.dart';
 
 class FirstScreen extends StatefulWidget {
+
   @override
   _FirstScreenState createState() => _FirstScreenState();
 }
@@ -25,7 +26,7 @@ class _FirstScreenState extends State<FirstScreen> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => SecondScreen()
+                        builder: (context) => SecondScreen(valueFromFirstScreen: "Gabriel",)
                     )
                 );
               },
