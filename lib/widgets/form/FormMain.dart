@@ -40,6 +40,15 @@ class _FormMainState extends State<FormMain> {
                   ),
                 ),
                 onPressed: () => _openScreen("/signup"),
+              ),
+              RaisedButton(
+                child: Text(
+                  "Bitcoin value",
+                  style: TextStyle(
+                      fontSize: 20
+                  ),
+                ),
+                onPressed: () => _openScreen("/bitcoin"),
               )
             ],
           ),
