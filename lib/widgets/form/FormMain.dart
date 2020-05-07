@@ -49,6 +49,15 @@ class _FormMainState extends State<FormMain> {
                   ),
                 ),
                 onPressed: () => _openScreen("/bitcoin"),
+              ),
+              RaisedButton(
+                child: Text(
+                  "Youtube",
+                  style: TextStyle(
+                      fontSize: 20
+                  ),
+                ),
+                onPressed: () => _openScreen("/youtube"),
               )
             ],
           ),
