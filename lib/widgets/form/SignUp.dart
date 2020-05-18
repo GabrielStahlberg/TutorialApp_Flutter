@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SignUp extends StatefulWidget {
   @override
@@ -21,7 +22,21 @@ class _SignUpState extends State<SignUp> {
   bool _obscureText = true;
   var _maskFormatter = new MaskTextInputFormatter(mask: '#####-###', filter: { "#": RegExp(r'[0-9]') });
 
-  _retrieveInformations(){
+  _save() async {
+    final sharedPref = await SharedPreferences.getInstance();
+
+    await sharedPref.setString("name", _nameController.text);
+    await sharedPref.setString("email", _emailController.text);
+    await sharedPref.setString("password", _passwordController.text);
+    await sharedPref.setString("codeZip", _codeZipController.text);
+    await sharedPref.setString("gender", _radioGender == "f" ? "Female" : "Male");
+
+    await _resetFields();
+  }
+
+  _retrieveInformations() async {
+    final sharedPref = await SharedPreferences.getInstance();
+    
     showDialog<void>(
       context: context,
       builder: (BuildContext context) {
@@ -30,11 +45,11 @@ class _SignUpState extends State<SignUp> {
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
-                Text(_nameController.text),
-                Text(_emailController.text),
-                Text(_passwordController.text),
-                Text(_codeZipController.text),
-                Text(_radioGender == "f" ? "Female" : "Male"),
+                Text(sharedPref.getString("name") ?? "Unknown"),
+                Text(sharedPref.getString("email") ?? "Unknown"),
+                Text(sharedPref.getString("password") ?? "Unknown"),
+                Text(sharedPref.getString("codeZip") ?? "Unknown"),
+                Text(sharedPref.getString("gender") ?? "Unknown"),
               ],
             ),
           ),
@@ -49,6 +64,16 @@ class _SignUpState extends State<SignUp> {
         );
       },
     );
+  }
+
+  _resetFields() {
+    _nameController.text = "";
+    _emailController.text = "";
+    _passwordController.text = "";
+    _codeZipController.text = "";
+    setState(() {
+      _radioGender = "m";
+    });
   }
 
   _retrieveZipCode(String zipCode) async {
@@ -201,15 +226,30 @@ class _SignUpState extends State<SignUp> {
                   Text("Female"),
                 ],
               ),
-              RaisedButton(
-                child: Text(
-                  "Submit",
-                  style: TextStyle(
-                      fontSize: 20
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  RaisedButton(
+                    child: Text(
+                      "Submit",
+                      style: TextStyle(
+                          fontSize: 20
+                      ),
+                    ),
+                    color: Colors.lightGreen,
+                    onPressed: _save,
                   ),
-                ),
-                color: Colors.blue,
-                onPressed: _retrieveInformations,
+                  RaisedButton(
+                    child: Text(
+                      "Show informations",
+                      style: TextStyle(
+                          fontSize: 20
+                      ),
+                    ),
+                    color: Colors.blue,
+                    onPressed: _retrieveInformations,
+                  )
+                ],
               )
             ],
           ),
