@@ -58,6 +58,15 @@ class _FormMainState extends State<FormMain> {
                   ),
                 ),
                 onPressed: () => _openScreen("/youtube"),
+              ),
+              RaisedButton(
+                child: Text(
+                  "Tasks list",
+                  style: TextStyle(
+                      fontSize: 20
+                  ),
+                ),
+                onPressed: () => _openScreen("/tasks"),
               )
             ],
           ),
