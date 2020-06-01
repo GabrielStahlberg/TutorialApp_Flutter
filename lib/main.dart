@@ -5,6 +5,7 @@ import 'package:tutorial_app/widgets/screens/FormMain.dart';
 import 'package:tutorial_app/widgets/screens/SignUp.dart';
 import 'package:tutorial_app/widgets/screens/TasksMain.dart';
 import 'package:tutorial_app/widgets/youtube/YoutubeMain.dart';
+import 'package:tutorial_app/widgets/notes/NotesMain.dart';
 
 void main() => runApp(MaterialApp(
   routes: {
@@ -13,6 +14,7 @@ void main() => runApp(MaterialApp(
     "/bitcoin": (context) => BitcoinsValue(),
     "/youtube": (context) => YoutubeMain(),
     "/tasks": (context) => TasksMain(),
+    "/notes": (context) => NotesMain(),
   },
   home: FormMain(),
   debugShowCheckedModeBanner: false,

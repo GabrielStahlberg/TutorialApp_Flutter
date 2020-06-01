@@ -1,6 +1,6 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import '../../../utils/key.dart';
+import 'package:tutorial_app/helper/key.dart';
 import 'package:tutorial_app/widgets/youtube/model/Video.dart';
 
 const CHANNEL_ID = "UCbcxFkd6B9xUU54InHv4Tig";
