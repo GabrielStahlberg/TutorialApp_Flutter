@@ -1,6 +1,6 @@
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
-import 'package:tutorial_app/widgets/notes/Note.dart';
+import 'package:tutorial_app/widgets/notes/model/Note.dart';
 
 class DatabaseNotesHelper {
 

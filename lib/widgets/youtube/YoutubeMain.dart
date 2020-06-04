@@ -34,7 +34,7 @@ class _YoutubeMainState extends State<YoutubeMain> {
         ),
         backgroundColor: Colors.white,
         title: Image.asset(
-            "images/youtube.png",
+            "assets/images/youtube.png",
           width: 98,
           height: 22,
         ),

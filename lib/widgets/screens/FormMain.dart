@@ -76,7 +76,16 @@ class _FormMainState extends State<FormMain> {
                   ),
                 ),
                 onPressed: () => _openScreen("/notes"),
-              )
+              ),
+              RaisedButton(
+                child: Text(
+                  "Learning English",
+                  style: TextStyle(
+                      fontSize: 20
+                  ),
+                ),
+                onPressed: () => _openScreen("/learning"),
+              ),
             ],
           ),
         ),

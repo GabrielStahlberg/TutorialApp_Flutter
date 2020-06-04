@@ -6,6 +6,7 @@ import 'package:tutorial_app/widgets/screens/SignUp.dart';
 import 'package:tutorial_app/widgets/screens/TasksMain.dart';
 import 'package:tutorial_app/widgets/youtube/YoutubeMain.dart';
 import 'package:tutorial_app/widgets/notes/NotesMain.dart';
+import 'package:tutorial_app/widgets/learning_english/LearningMain.dart';
 
 void main() => runApp(MaterialApp(
   routes: {
@@ -15,6 +16,7 @@ void main() => runApp(MaterialApp(
     "/youtube": (context) => YoutubeMain(),
     "/tasks": (context) => TasksMain(),
     "/notes": (context) => NotesMain(),
+    "/learning": (context) => LearningMain()
   },
   home: FormMain(),
   debugShowCheckedModeBanner: false,

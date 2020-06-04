@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tutorial_app/widgets/notes/Note.dart';
+import 'package:tutorial_app/widgets/notes/model/Note.dart';
 import 'package:tutorial_app/helper/DatabaseNotesHelper.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';

@@ -8,12 +8,12 @@ class Game extends StatefulWidget {
 
 class _GameState extends State<Game> {
 
-  var _appImage = AssetImage("images/padrao.png");
+  var _appImage = AssetImage("assets/images/padrao.png");
   var _message = "Escolha uma opção abaixo";
   var _options = {
-    0 : "images/pedra.png",
-    1 : "images/papel.png",
-    2 : "images/tesoura.png"
+    0 : "assets/images/pedra.png",
+    1 : "assets/images/papel.png",
+    2 : "assets/images/tesoura.png"
   };
 
   void _selectedOption(int userChoose) {
