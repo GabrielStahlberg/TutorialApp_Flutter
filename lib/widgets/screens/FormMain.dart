@@ -86,6 +86,15 @@ class _FormMainState extends State<FormMain> {
                 ),
                 onPressed: () => _openScreen("/learning"),
               ),
+              RaisedButton(
+                child: Text(
+                  "Choosing picture",
+                  style: TextStyle(
+                      fontSize: 20
+                  ),
+                ),
+                onPressed: () => _openScreen("/picture"),
+              ),
             ],
           ),
         ),

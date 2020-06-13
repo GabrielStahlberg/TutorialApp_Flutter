@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tutorial_app/widgets/ChoosingPicture.dart';
 import 'package:tutorial_app/widgets/screens/BitcoinsValue.dart';
 import 'package:tutorial_app/widgets/screens/Game.dart';
 import 'package:tutorial_app/widgets/screens/FormMain.dart';
@@ -25,7 +26,8 @@ void main() {
       "/youtube": (context) => YoutubeMain(),
       "/tasks": (context) => TasksMain(),
       "/notes": (context) => NotesMain(),
-      "/learning": (context) => LearningMain()
+      "/learning": (context) => LearningMain(),
+      "/picture": (context) => ChoosingPicture()
     },
     home: FormMain(),
     debugShowCheckedModeBanner: false,
