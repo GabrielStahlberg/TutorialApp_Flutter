@@ -95,6 +95,15 @@ class _FormMainState extends State<FormMain> {
                 ),
                 onPressed: () => _openScreen("/picture"),
               ),
+              RaisedButton(
+                child: Text(
+                  "WhatsApp",
+                  style: TextStyle(
+                      fontSize: 20
+                  ),
+                ),
+                onPressed: () => _openScreen("/whatsapp"),
+              ),
             ],
           ),
         ),

@@ -5,18 +5,13 @@ import 'package:tutorial_app/widgets/screens/Game.dart';
 import 'package:tutorial_app/widgets/screens/FormMain.dart';
 import 'package:tutorial_app/widgets/screens/SignUp.dart';
 import 'package:tutorial_app/widgets/screens/TasksMain.dart';
+import 'package:tutorial_app/widgets/whatsapp/screens/LoginWhatsApp.dart';
 import 'package:tutorial_app/widgets/youtube/YoutubeMain.dart';
 import 'package:tutorial_app/widgets/notes/NotesMain.dart';
 import 'package:tutorial_app/widgets/learning_english/LearningMain.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-
-  Firestore.instance
-  .collection("users")
-  .document("score")
-  .setData({"Marcela": "180", "Carol": "1100"});
 
   runApp(MaterialApp(
     routes: {
@@ -27,7 +22,8 @@ void main() {
       "/tasks": (context) => TasksMain(),
       "/notes": (context) => NotesMain(),
       "/learning": (context) => LearningMain(),
-      "/picture": (context) => ChoosingPicture()
+      "/picture": (context) => ChoosingPicture(),
+      "/whatsapp": (context) => LoginWhatsApp()
     },
     home: FormMain(),
     debugShowCheckedModeBanner: false,
