@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tutorial_app/widgets/whatsapp/model/User.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:tutorial_app/widgets/whatsapp/screens/Home.dart';
+import 'package:tutorial_app/widgets/whatsapp/routes/RouteGenerator.dart';
 
 import 'SignUp.dart';
 
@@ -48,12 +48,7 @@ class _LoginWhatsAppState extends State<LoginWhatsApp> {
         email: user.email,
         password: user.password
     ).then((firebaseUser) {
-      Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-              builder: (context) => Home()
-          )
-      );
+      Navigator.pushReplacementNamed(context, RouteGenerator.HOME_ROUTE);
     }).catchError((error) {
       setState(() {
         _errorMessage = "Authentication error! Please, check E-mail and password and try again.";
@@ -66,12 +61,7 @@ class _LoginWhatsAppState extends State<LoginWhatsApp> {
 
     FirebaseUser userLogged = await auth.currentUser();
     if(userLogged != null) {
-      Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-              builder: (context) => Home()
-          )
-      );
+      Navigator.pushReplacementNamed(context, RouteGenerator.HOME_ROUTE);
     }
   }
 

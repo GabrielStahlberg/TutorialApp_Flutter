@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:tutorial_app/widgets/whatsapp/model/Chat.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:tutorial_app/widgets/whatsapp/model/User.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:tutorial_app/widgets/whatsapp/routes/RouteGenerator.dart';
 
 class ContactsTab extends StatefulWidget {
   @override
@@ -8,42 +11,94 @@ class ContactsTab extends StatefulWidget {
 
 class _ContactsTabState extends State<ContactsTab> {
 
-  List<Chat> chatList = [
-    Chat(
-        "Roger Federer",
-        "Hello, let's play tomorrow morning?",
-        "https://firebasestorage.googleapis.com/v0/b/tutorialapp-34673.appspot.com/o/profile%2Ffederer.png?alt=media&token=1452f72c-d069-48a0-9c4a-dd780ce821cd"
-    ),
-    Chat(
-        "James Bond",
-        "Hi, the next 007 film will be coming soon",
-        "https://firebasestorage.googleapis.com/v0/b/tutorialapp-34673.appspot.com/o/profile%2Fjames.png?alt=media&token=a6b736b9-0b69-400f-95ed-4445ad8c78ae"
-    ),
-  ];
+  String _idUserLogged;
+  String _emailUserLogged;
+
+  _retrieveUserDatas() async {
+    FirebaseAuth auth = FirebaseAuth.instance;
+    FirebaseUser userLogged = await auth.currentUser();
+    _idUserLogged = userLogged.uid;
+    _emailUserLogged = userLogged.email;
+  }
+
+  Future<List<User>> _retrieveContacts() async {
+    Firestore firestore = Firestore.instance;
+    QuerySnapshot querySnapshot = await firestore.collection("users")
+        .getDocuments();
+
+    List<User> usersList = List();
+    for(DocumentSnapshot item in querySnapshot.documents) {
+      var datas = item.data;
+
+      if(datas["email"] != _emailUserLogged) {
+        User user = User();
+        user.userId = item.documentID;
+        user.email = datas["email"];
+        user.name = datas["name"];
+        user.urlPicture = datas["urlPicture"];
+
+        usersList.add(user);
+      }
+    }
+    return usersList;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _retrieveUserDatas();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        itemCount: chatList.length,
-        itemBuilder: (context, index) {
-          Chat chat = chatList[index];
-
-          return ListTile(
-            contentPadding: EdgeInsets.fromLTRB(16, 8, 16, 8),
-            leading: CircleAvatar(
-              maxRadius: 30,
-              backgroundColor: Colors.grey,
-              backgroundImage: NetworkImage(chat.photoPath),
-            ),
-            title: Text(
-              chat.name,
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16
+    return FutureBuilder<List<User>>(
+      future: _retrieveContacts(),
+      builder: (context, snapshot) {
+        switch(snapshot.connectionState) {
+          case ConnectionState.none:
+          case ConnectionState.waiting:
+            return Center(
+              child: Column(
+                children: <Widget>[
+                  Text("Loading contacts"),
+                  CircularProgressIndicator()
+                ],
               ),
-            ),
-          );
+            );
+            break;
+          case ConnectionState.active:
+          case ConnectionState.done:
+            return ListView.builder(
+                itemCount: snapshot.data.length,
+                itemBuilder: (_, index) {
+                  List<User> itemsList = snapshot.data;
+                  User user = itemsList[index];
+
+                  return ListTile(
+                    onTap: () {
+                      Navigator.pushNamed(context, RouteGenerator.MESSAGES_ROUTE, arguments: user);
+                    },
+                    contentPadding: EdgeInsets.fromLTRB(16, 8, 16, 8),
+                    leading: CircleAvatar(
+                      maxRadius: 30,
+                      backgroundColor: Colors.grey,
+                      backgroundImage: user.urlPicture != null ? NetworkImage(user.urlPicture) : null,
+                    ),
+                    title: Text(
+                      user.name,
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16
+                      ),
+                    ),
+                  );
+                }
+            );
+            break;
         }
+      },
     );
   }
 }
+
+

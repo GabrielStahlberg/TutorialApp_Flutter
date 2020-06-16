@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:tutorial_app/widgets/whatsapp/model/User.dart';
-import 'package:tutorial_app/widgets/whatsapp/screens/Home.dart';
+import 'package:tutorial_app/widgets/whatsapp/routes/RouteGenerator.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class SignUp extends StatefulWidget {
@@ -64,12 +64,7 @@ class _SignUpState extends State<SignUp> {
         user.toMap()
       );
 
-      Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-              builder: (context) => Home()
-          )
-      );
+      Navigator.pushNamedAndRemoveUntil(context, RouteGenerator.HOME_ROUTE, (_)=>false);
     }).catchError((error) {
       setState(() {
         _errorMessage = "Registration failed! Please, check the fields and try again.";

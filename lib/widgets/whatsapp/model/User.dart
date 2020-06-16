@@ -1,7 +1,9 @@
 class User {
+  String _userId;
   String _name;
   String _email;
   String _password;
+  String _urlPicture;
 
   User();
 
@@ -10,14 +12,25 @@ class User {
       "name" : this.name,
       "email" : this.email
     };
-
     return map;
+  }
+
+  String get userId => _userId;
+
+  set userId(String value) {
+    _userId = value;
   }
 
   String get password => _password;
 
   set password(String value) {
     _password = value;
+  }
+
+  String get urlPicture => _urlPicture;
+
+  set urlPicture(String value) {
+    _urlPicture = value;
   }
 
   String get email => _email;

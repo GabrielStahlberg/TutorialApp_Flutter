@@ -5,6 +5,7 @@ import 'package:tutorial_app/widgets/screens/Game.dart';
 import 'package:tutorial_app/widgets/screens/FormMain.dart';
 import 'package:tutorial_app/widgets/screens/SignUp.dart';
 import 'package:tutorial_app/widgets/screens/TasksMain.dart';
+import 'package:tutorial_app/widgets/whatsapp/routes/RouteGenerator.dart';
 import 'package:tutorial_app/widgets/whatsapp/screens/LoginWhatsApp.dart';
 import 'package:tutorial_app/widgets/youtube/YoutubeMain.dart';
 import 'package:tutorial_app/widgets/notes/NotesMain.dart';
@@ -25,6 +26,7 @@ void main() {
       "/picture": (context) => ChoosingPicture(),
       "/whatsapp": (context) => LoginWhatsApp()
     },
+    onGenerateRoute: RouteGenerator.generateRoute,
     home: FormMain(),
     debugShowCheckedModeBanner: false,
   ));
